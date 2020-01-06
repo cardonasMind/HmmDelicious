@@ -3,10 +3,14 @@ import DOMElements from './DOMElements';
 export const getInputValue = () => DOMElements.searchInput.value;
 
 export const changeActualSearchTitle = (search, recipesLength) => {
+    DOMElements.actualSearchTitle.style.display = 'block';
     DOMElements.actualSearchTitle.innerText = `Recipes for ${search} (${recipesLength})`;
 }
 
-export const clearActualRecipe = () => {
+export const clearActualRecipe = (total) => {
+    if(total) {
+        DOMElements.actualSearchTitle.style.display = 'none';
+    }
     DOMElements.searchInput.value = "";
     DOMElements.recipesList.innerHTML = "";
     DOMElements.recipesListPagination.innerHTML = "";
@@ -31,7 +35,7 @@ export const clearSearchLoader = () => {
 
 const newItemRecipe = (recipe) => {
     const recipeItem = `
-    <div class="recipe-item">
+    <div class="recipe-item" data-recId="${recipe.id}">
         <div class="recipe-image" style="background-image: url(https://spoonacular.com/recipeImages/${recipe.image})""></div>
         <div class="recipe-info">
             <h3>${recipe.title}</h3>

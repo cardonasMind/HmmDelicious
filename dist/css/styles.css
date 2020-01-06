@@ -146,6 +146,12 @@ main #recipes-list-container #recipes-list .recipe-item:nth-child(2n) {
     background: #eac916;
 }
 
+main #recipes-list-container #recipes-list .recipe-item:hover {
+    background: #f7e68c;
+    color: #9c0000;
+    cursor: pointer;
+}
+
 main #recipes-list-container #recipes-list .recipe-item .recipe-image {
     background-size: cover;
     background-position: center;

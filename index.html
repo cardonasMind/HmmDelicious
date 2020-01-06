@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HmmDelicious | Just a cooking recipes web</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- styles in the /dist folder-->
+</head>
+<body>
+    <header>
+        <h1>HmmDelicious</h1>
+        <p>Just a cooking recipes web</p>
+        <div id="header-overlay"></div>
+    </header>
+
+    <div id="search-recipes-container">
+        <div id="search-recipes">
+            <input id="search-input" type="text" placeholder="Search for a recipe">
+            <button id="search-button">Search</button>
+        </div>
+        
+        <p>Liked</p>
+    </div>
+    <main>
+        <div id="recipes-list-container">  
+            <h2 id="actual-search-title">Write something to search</h2>
+
+            <div id="recipes-list">
+                <div id="placeholder-div">
+                    <img id="placeholder-image" src="images/placeholder-image.png" />
+                </div>
+            </div>
+            <div id="recipes-pagination"></div>
+        </div>
+    </main>
+</body>
+</html>
