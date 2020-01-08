@@ -8,8 +8,10 @@ export const changeActualSearchTitle = (search, recipesLength) => {
 }
 
 export const clearActualRecipe = (total) => {
-    if(total) {
+    if(total === "total") {
         DOMElements.actualSearchTitle.style.display = 'none';
+    } else if(total === "nototal") {
+        DOMElements.actualSearchTitle.style.display = 'block';
     }
     DOMElements.searchInput.value = "";
     DOMElements.recipesList.innerHTML = "";
@@ -36,7 +38,7 @@ export const clearSearchLoader = () => {
 const newItemRecipe = (recipe) => {
     const recipeItem = `
     <div class="recipe-item" data-recId="${recipe.id}">
-        <div class="recipe-image" style="background-image: url(https://spoonacular.com/recipeImages/${recipe.image})""></div>
+        <div class="recipe-image" style="background-image: url(https://spoonacular.com/recipeImages/${recipe.image})"></div>
         <div class="recipe-info">
             <h3>${recipe.title}</h3>
             <p>Ready in ${recipe.readyInMinutes} minutes</p>
@@ -63,15 +65,15 @@ export const printRecipes = (recipes, page = 1, recipesPerPage = 4) => {
     } else {
         if(page === 1) {
             // Is the first page
-            buttons = `<button class="pagination-button" id="next-button" data-goto="${nextPage}">Siguiente</button>`;
+            buttons = `<button class="pagination-button" id="next-button" data-goto="${nextPage}">Next</button>`;
         
         } else if(page > 1 && page < Math.ceil(recipes.length / recipesPerPage)) {
-            buttons = `<button class="pagination-button" id="prev-button" data-goto="${prevPage}">Atras</button>
-            <button class="pagination-button" id="next-button" data-goto="${nextPage}">Siguiente</button>`;
+            buttons = `<button class="pagination-button" id="prev-button" data-goto="${prevPage}">Previous</button>
+            <button class="pagination-button" id="next-button" data-goto="${nextPage}">Next</button>`;
         
         } else {
             // Is the last page
-            buttons = `<button class="pagination-button" id="prev-button" data-goto="${prevPage}">Atras</button>`
+            buttons = `<button class="pagination-button" id="prev-button" data-goto="${prevPage}">Previous</button>`
         }
     }
     DOMElements.recipesListPagination.insertAdjacentHTML('afterbegin', buttons);

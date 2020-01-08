@@ -2,6 +2,7 @@ import DOMElements from './views/DOMElements';
 import * as searchView from './views/searchView';
 import SearchRecipe from './models/SearchRecipe';
 import Recipe from './models/Recipe';
+import * as recipeView from './views/recipeView';
 
 const state = {}
 
@@ -25,8 +26,8 @@ DOMElements.searchButton.onclick = async () => {
         searchView.renderSearchLoader(DOMElements.recipesList);
 
         // 4. Print the recipes in DOM
-        searchView.clearSearchLoader();
         searchView.printRecipes(await state.search.results);
+        searchView.clearSearchLoader();
     }
     
 }
@@ -36,8 +37,11 @@ DOMElements.searchButton.onclick = async () => {
 */
 
 DOMElements.recipesListPagination.onclick = (e) => {
-    searchView.clearActualRecipe();
-    searchView.printRecipes(state.search.results, Number(e.target.dataset.goto));
+    // Check if the target was a button
+    if(e.target.type === 'submit') {
+        searchView.clearActualRecipe("total");
+        searchView.printRecipes(state.search.results, Number(e.target.dataset.goto));
+    }
 }
 
 /*
@@ -45,6 +49,12 @@ DOMElements.recipesListPagination.onclick = (e) => {
 */   
 
 DOMElements.recipesList.onclick = async (e) => {
+    // If the click was in the close-recipe button image
+    if(e.target.id === "close-recipe") {
+        searchView.clearActualRecipe("nototal");
+        searchView.printRecipes(state.search.results);
+    }
+
     // For insert the selected recipe in the DOM 
     // 1st. We need to get the selected recipe
     const recipeId = Number(e.target.closest('.recipe-item').dataset.recid);
@@ -58,10 +68,8 @@ DOMElements.recipesList.onclick = async (e) => {
         searchView.clearActualRecipe('total');
         searchView.renderSearchLoader(DOMElements.recipesList);
 
-        // 4th. Finally we need to clear the loadr and print the recipe into DOM
-        console.log(state.recipe)
+        // 4th. Finally we need to clear the loader and print the recipe into DOM
+        recipeView.printActualRecipe(state.recipe);
+        searchView.clearSearchLoader();
     }
-
-    
-
 }

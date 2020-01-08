@@ -36,15 +36,16 @@ header {
     padding: 1.4rem;
     border-radius: 10px;
     margin: 1rem;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwlZXtenOmxZRciY8hA4jxoyd-aYa69DEQX5RIrMD0h-ySBlk&s");
+    background-image: url("../images/header-image.jpg");
     background-position: center;
     background-size: cover;
     z-index: 1;
     color: white;
+    box-shadow: 0px 0px 4px black;
 }
 
 header #header-overlay {
-    background: linear-gradient(rgba(253, 240, 37, 0.6), rgba(105, 77, 0, 0.8));
+    background: linear-gradient(rgba(233, 198, 29, 0.6), rgba(221, 153, 141, 1));
     position: absolute;
     top: 0;
     right: 0;
@@ -58,31 +59,36 @@ header #header-overlay {
 */
 
 #search-recipes-container {
-    background: #eac916;
+    background-color: #eac916;
+    background: linear-gradient(45deg, #eac916, #dc9696);
     display: grid;
     grid-template-columns: auto auto;
-    grid-gaP: 1rem;
+    grid-gap: 1rem;
     align-items: center;
-    padding: .4rem 1rem;
+    padding: 0 1rem;
+    box-shadow: 0px 0px 2px black;
 }
 
 #search-recipes-container #search-recipes #search-input {
     padding: .2rem .6rem;
     border-radius: 4px;
     border: none;
+    box-shadow: inset 0px 0px 4px black;
 }
 
 #search-recipes-container #search-recipes #search-button {
-    background: #9c0000;
+    background: #000000;
     font-weight: 600;
     padding: .2rem .6rem;
     border-radius: 4px;
     border: none;
     color: white;
+    box-shadow: 0px 0px 10px 4px white;
 }
 
 #search-recipes-container #search-recipes #search-button:hover {
-    background: #e00000;
+    background: #90a1dd;
+    transition: .4s all;
 }
 
 
@@ -92,6 +98,7 @@ header #header-overlay {
 
 main {
     background: white;
+    margin: .4rem 0;
 }
 
 /*
@@ -138,18 +145,20 @@ main #recipes-list-container #recipes-list .recipe-item{
     grid-gap: 6px;
     padding: .2rem;
     border-radius: 6px;
-    background: #ffde2c;
+    /* background: #ffde2c; */
     margin: .8rem .2rem;
+    box-shadow: inset 0px 0px 4px 0px;
 }
 
 main #recipes-list-container #recipes-list .recipe-item:nth-child(2n) {
-    background: #eac916;
+    background: #e7e9ec;
+    box-shadow: 0px 0px 4px 0px black;
 }
 
 main #recipes-list-container #recipes-list .recipe-item:hover {
-    background: #f7e68c;
-    color: #9c0000;
+    /* color: #9c0000; */
     cursor: pointer;
+    box-shadow: 0px 0px 10px black;
 }
 
 main #recipes-list-container #recipes-list .recipe-item .recipe-image {
@@ -157,6 +166,7 @@ main #recipes-list-container #recipes-list .recipe-item .recipe-image {
     background-position: center;
     width: 60px;
     height: 60px;
+    /* background-image: url('../images/header-image.jpg'); */
 }
 
 main #recipes-list-container #recipes-list .recipe-item .recipe-info h3 {
@@ -172,7 +182,7 @@ main #recipes-list-container #recipes-pagination {
 }
 
 main #recipes-list-container #recipes-pagination .pagination-button {
-    background: #d4481e;
+    background: #90a1dd;
     font-weight: 600;
     padding: .2rem .6rem;
     border-radius: 4px;
@@ -181,5 +191,55 @@ main #recipes-list-container #recipes-pagination .pagination-button {
 }
 
 main #recipes-list-container #recipes-pagination .pagination-button:hover {
-    background: #f85524;
+    background: #6b759a;
+}
+
+/* RECIPE CONTAINER */
+main #recipes-list-container #recipe-container {
+    box-shadow: inset 0px 0px 4px black;
+    border-radius: 10px;
+}
+
+main #recipes-list-container #recipe-container #recipe-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 1rem;
+    padding: 1.4rem 1.4rem 0;
+    align-items: center;
+}
+
+main #recipes-list-container #recipe-container #recipe-header #close-recipe {
+    background: #e9c71b;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+main #recipes-list-container #recipe-container #recipe-image {
+    background-image: url('../images/header-image.jpg');
+    background-color: #dd9b89;
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+    margin: 4px 0;
+    box-shadow: 0px 0px 8px black;
+}
+
+main #recipes-list-container #recipe-container #recipe-info {
+    padding: 0 1.4rem 1.4rem;
+}
+
+main #recipes-list-container #recipe-container #recipe-info #principal-info {
+    display: flex;
+}
+
+/*
+    FOOTER
+*/
+
+footer {
+    background: #e3af58;
+    color: white;
+    padding: 1rem;
+    box-shadow: 0px 0px 4px black;
+    margin: 1rem;
 }

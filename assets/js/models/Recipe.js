@@ -17,7 +17,26 @@ export default class Recipe {
                     "x-rapidapi-key": apiConfig.key
                 }
             })
-            this.results = res.data.results;
+            const resData = res.data;
+
+            this.title = resData.title;
+            this.image = resData.image;
+
+            this.cheap = resData.cheap;
+            this.occasions = resData.occasions;
+
+            this.dairyFree = resData.dairyFree;
+            this.veryHealthy = resData.veryHealthy;
+            this.healthScore = resData.healthScore;
+
+            this.preparationMinutes = resData.preparationMinutes;
+            this.cookingMinutes = resData.cookingMinutes;
+            this.readyInMinutes = resData.readyInMinutes;
+            this.servings = resData.servings;
+            
+            this.extendedIngredients = resData.extendedIngredients;
+            this.sourceUrl = resData.sourceUrl;
+        
         } 
         catch(error) {
             console.log(error)
