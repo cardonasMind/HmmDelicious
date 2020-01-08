@@ -4,9 +4,9 @@ export const printActualRecipe = (recipeInfo) => {
     const recipe = `
         <div id="recipe-container">
         <div id="recipe-header">
-            <img id="close-recipe" src="https://img.icons8.com/offices/2x/arrow-pointing-left.png" width="30px">
+            <img id="close-recipe" src="images/icons/back-arrow-icon.png" width="30px">
             <h2>${recipeInfo.title}</h2>
-            <img id="save-recipe" src="https://img.icons8.com/clouds/2x/filled-star.png" width="40px">
+            <img id="save-recipe" src="images/icons/save-recipe-icon.png" width="40px">
         </div>
         <div id="recipe-image" style="background-image: url(${recipeInfo.image})"></div>
         <div id="recipe-info">
