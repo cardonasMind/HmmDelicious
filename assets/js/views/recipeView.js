@@ -4,28 +4,47 @@ export const printActualRecipe = (recipeInfo) => {
     const recipe = `
         <div id="recipe-container">
         <div id="recipe-header">
-            <img id="close-recipe" src="images/icons/back-arrow-icon.png" width="30px">
+            <img id="close-recipe" src="images/icons/back-arrow-icon.png">
             <h2>${recipeInfo.title}</h2>
-            <img id="save-recipe" src="images/icons/save-recipe-icon.png" width="40px">
+            <img id="save-recipe" src="images/icons/save-recipe-icon.png">
         </div>
+
         <div id="recipe-image" style="background-image: url(${recipeInfo.image})"></div>
+
         <div id="recipe-info">
             <div id="principal-info">
-                <p>${recipeInfo.cheap ? "Barato" : "Carito"}</p>
-                <p>Perfect for: Xmas, halloween</p>
+                <p><img id="recipe-cost" src="images/icons/cash-icon.png"/>${recipeInfo.cheap ? "Cheap" : "Expensive"}</p>
+                <p>Perfect for: ${recipeInfo.occasions}</p>
             </div>
 
             <h3>Health info</h3>
             <div id="health-info">
-                <p>dairyFree: yes</p>
-                <p>Hearth: 100/100</p>
+                <div id="dairy-free-info">
+                    <img src="images/icons/dairy-icon.png" />
+                    ${recipeInfo.dairyFree ? "Dairy free" : "Contains dairy"}
+                </div>
+                <div id="heart-info">
+                    <img src="images/icons/${recipeInfo.veryHealthy ? "good" : "bad"}-heart-icon.png" />
+                    ${recipeInfo.healthScore}/100
+                </div>
             </div>
 
             <h3>Preparation info</h3>
             <div id="preparation-info">
-                <p>Preparation: 10 minutes</p>
-                <p>Cooking time: 5 minutes</p>
-                <p>Ready in 15 minuts for 4 persons</p>
+                <div id="preparation-time-info">
+                    <img src="images/icons/time-icon.png" />
+                    <p>Preparation</p>
+                    <h4>${recipeInfo.preparationMinutes} minutes</h4>
+                </div>
+                <div id="cooking-time-info">
+                    <img src="images/icons/time-icon.png" />
+                    <p>Cooking time</p>
+                    <h4>${recipeInfo.cookingMinutes} minutes</h4>
+                </div>
+                <div id="ready-in-info">
+                    <img src="images/icons/ready-icon.png" />
+                    <p>Ready in ${recipeInfo.readyInMinutes} minutes for ${recipeInfo.servings} amazing persons!</p>
+                </div>
             </div>
 
             <h3>Ingredients</h3>

@@ -194,26 +194,36 @@ main #recipes-list-container #recipes-pagination .pagination-button:hover {
     background: #6b759a;
 }
 
-/* RECIPE CONTAINER */
+/* 
+    RECIPE CONTAINER 
+*/
+
 main #recipes-list-container #recipe-container {
     box-shadow: inset 0px 0px 4px black;
     border-radius: 10px;
 }
 
+/* RECIPE HEADER */
 main #recipes-list-container #recipe-container #recipe-header {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-gap: 1rem;
-    padding: 1.4rem 1.4rem 0;
+    padding: 1.4rem 1.4rem .6rem;
     align-items: center;
 }
 
 main #recipes-list-container #recipe-container #recipe-header #close-recipe {
+    width: 30px;
     background: #e9c71b;
     border-radius: 50%;
     padding: 4px;
 }
 
+main #recipes-list-container #recipe-container #recipe-header #save-recipe {
+    width: 40px;
+}
+
+/* RECIPE IMAGE */
 main #recipes-list-container #recipe-container #recipe-image {
     background-image: url('../images/header-image.jpg');
     background-color: #dd9b89;
@@ -224,12 +234,56 @@ main #recipes-list-container #recipe-container #recipe-image {
     box-shadow: 0px 0px 8px black;
 }
 
+/* RECIPE INFO */
 main #recipes-list-container #recipe-container #recipe-info {
     padding: 0 1.4rem 1.4rem;
 }
 
+/* Recipe principal info */
 main #recipes-list-container #recipe-container #recipe-info #principal-info {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+main #recipes-list-container #recipe-container #recipe-info #principal-info p {
+    display: flex;
+    align-items: center;
+}
+
+main #recipes-list-container #recipe-container #recipe-info #principal-info #recipe-cost {
+    width: 40px;
+    margin-right: 4px;
+}
+
+/* Recipe health info */
+main #recipes-list-container #recipe-container #recipe-info #health-info {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+main #recipes-list-container #recipe-container #recipe-info #health-info img {
+    width: 40px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* Recipe preparation info */
+main #recipes-list-container #recipe-container #recipe-info #preparation-info {
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+main #recipes-list-container #recipe-container #recipe-info #preparation-info img {
+    width: 40px;
+    display: block;
+    margin: 0 auto;
 }
 
 /*

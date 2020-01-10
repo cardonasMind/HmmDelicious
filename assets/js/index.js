@@ -39,7 +39,7 @@ DOMElements.searchButton.onclick = async () => {
 DOMElements.recipesListPagination.onclick = (e) => {
     // Check if the target was a button
     if(e.target.type === 'submit') {
-        searchView.clearActualRecipe("total");
+        searchView.clearActualRecipe();
         searchView.printRecipes(state.search.results, Number(e.target.dataset.goto));
     }
 }
@@ -57,19 +57,22 @@ DOMElements.recipesList.onclick = async (e) => {
 
     // For insert the selected recipe in the DOM 
     // 1st. We need to get the selected recipe
-    const recipeId = Number(e.target.closest('.recipe-item').dataset.recid);
+    if(e.target.closest('.recipe-item')) {
+        const recipeId = Number(e.target.closest('.recipe-item').dataset.recid);
 
-    if(recipeId) {
-        // 2nd. Then we need to make a new request to the API
-        state.recipe = new Recipe(recipeId);
-        await state.recipe.getRecipe()
+        if(recipeId) {
+            // 2nd. Then we need to make a new request to the API
+            state.recipe = new Recipe(recipeId);
+            await state.recipe.getRecipe()
 
-        // 3rd. After the request, simultanly we need to clear the parent and print the loader for a better UI experience
-        searchView.clearActualRecipe('total');
-        searchView.renderSearchLoader(DOMElements.recipesList);
+            // 3rd. After the request, simultanly we need to clear the parent and print the loader for a better UI experience
+            searchView.clearActualRecipe('total');
+            searchView.renderSearchLoader(DOMElements.recipesList);
 
-        // 4th. Finally we need to clear the loader and print the recipe into DOM
-        recipeView.printActualRecipe(state.recipe);
-        searchView.clearSearchLoader();
+            // 4th. Finally we need to clear the loader and print the recipe into DOM
+            searchView.clearSearchLoader();
+            recipeView.printActualRecipe(state.recipe);
+        }
     }
+    
 }
