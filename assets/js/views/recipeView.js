@@ -1,6 +1,17 @@
 import DOMElements from './DOMElements';
 
+let ingredients = "";
+
+const createIngredient = ingredient => {
+    const ingredientMakeup = `
+        ${ingredient.name}
+    `
+
+    ingredients += ingredientMakeup;
+}
+
 export const printActualRecipe = (recipeInfo) => {
+    console.log(recipeInfo.extendedIngredients)
     const recipe = `
         <div id="recipe-container">
         <div id="recipe-header">
@@ -37,7 +48,7 @@ export const printActualRecipe = (recipeInfo) => {
                     <h4>${recipeInfo.preparationMinutes} minutes</h4>
                 </div>
                 <div id="cooking-time-info">
-                    <img src="images/icons/time-icon.png" />
+                    <img src="images/icons/cooking-icon.png" />
                     <p>Cooking time</p>
                     <h4>${recipeInfo.cookingMinutes} minutes</h4>
                 </div>
@@ -49,13 +60,12 @@ export const printActualRecipe = (recipeInfo) => {
 
             <h3>Ingredients</h3>
             <div id="recipe-ingredients">
-                Milk
-                something
-                Something more
+                ${recipeInfo.extendedIngredients.forEach(ingredient => createIngredient(ingredient))}
+                ${ingredients}
             </div>
 
             <h3>Recipe from</h3>
-            <p>Recipe from tuputamadre</p>
+            <a href=${recipeInfo.sourceUrl}>Go to source page...</a>
         </div>
     </div>
     `

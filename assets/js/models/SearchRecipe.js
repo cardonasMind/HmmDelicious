@@ -6,7 +6,7 @@ export default class Search {
         this.query = query;
     }
 
-    async getRecipe() {
+    async getRecipes() {
         try {
             const res = await axios({
                 "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",

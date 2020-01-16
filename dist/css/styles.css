@@ -91,6 +91,21 @@ header #header-overlay {
     transition: .4s all;
 }
 
+#search-recipes-container #saved-recipes-button {
+    cursor: pointer;
+}
+
+main #saved-recipes {
+    padding: 1rem;
+    background: rgba(144, 161, 221, .8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 100vw;
+    z-index: 999;
+    transition: 1s all;
+}
 
 /*
     MAIN SECTION
@@ -99,6 +114,8 @@ header #header-overlay {
 main {
     background: white;
     margin: .4rem 0;
+    position: relative;
+    overflow: hidden;
 }
 
 /*
@@ -139,49 +156,48 @@ main #recipes-list-container #recipes-list #placeholder-div #blink-loader{
 }
 
 /* RECIPES */
-main #recipes-list-container #recipes-list .recipe-item{
+.recipe-item{
     display: grid;
     grid-template-columns: 60px auto;
     grid-gap: 6px;
     padding: .2rem;
     border-radius: 6px;
-    /* background: #ffde2c; */
     margin: .8rem .2rem;
     box-shadow: inset 0px 0px 4px 0px;
 }
 
-main #recipes-list-container #recipes-list .recipe-item:nth-child(2n) {
+.recipe-item:nth-child(2n) {
     background: #e7e9ec;
     box-shadow: 0px 0px 4px 0px black;
 }
 
-main #recipes-list-container #recipes-list .recipe-item:hover {
+.recipe-item:hover {
     /* color: #9c0000; */
     cursor: pointer;
     box-shadow: 0px 0px 10px black;
 }
 
-main #recipes-list-container #recipes-list .recipe-item .recipe-image {
+.recipe-item .recipe-image {
     background-size: cover;
     background-position: center;
     width: 60px;
     height: 60px;
-    /* background-image: url('../images/header-image.jpg'); */
+    background-image: url('../images/header-image.jpg');
+}
+
+.recipe-item .recipe-info {
+    overflow: hidden;
 }
 
 main #recipes-list-container #recipes-list .recipe-item .recipe-info h3 {
-    width: 240px;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
+
 
 /* RECIPES PAGINATION */
-main #recipes-list-container #recipes-pagination {
-
-}
-
-main #recipes-list-container #recipes-pagination .pagination-button {
+.recipes-pagination .pagination-button {
     background: #90a1dd;
     font-weight: 600;
     padding: .2rem .6rem;
@@ -190,7 +206,7 @@ main #recipes-list-container #recipes-pagination .pagination-button {
     color: white;
 }
 
-main #recipes-list-container #recipes-pagination .pagination-button:hover {
+.recipes-pagination .pagination-button:hover {
     background: #6b759a;
 }
 
@@ -225,7 +241,7 @@ main #recipes-list-container #recipe-container #recipe-header #save-recipe {
 
 /* RECIPE IMAGE */
 main #recipes-list-container #recipe-container #recipe-image {
-    background-image: url('../images/header-image.jpg');
+    /* background-image: url('../images/header-image.jpg'); */
     background-color: #dd9b89;
     height: 140px;
     background-size: cover;
@@ -239,12 +255,17 @@ main #recipes-list-container #recipe-container #recipe-info {
     padding: 0 1.4rem 1.4rem;
 }
 
+main #recipes-list-container #recipe-container #recipe-info h3 {
+    margin-top: 10px;
+}
+
 /* Recipe principal info */
 main #recipes-list-container #recipe-container #recipe-info #principal-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    background: #c1f5b0;
 }
 
 main #recipes-list-container #recipe-container #recipe-info #principal-info p {
@@ -262,6 +283,7 @@ main #recipes-list-container #recipe-container #recipe-info #health-info {
     display: flex;
     justify-content: space-evenly;
     padding: 1rem;
+    background: #e4bdb4;
 }
 
 main #recipes-list-container #recipe-container #recipe-info #health-info img {
@@ -278,12 +300,23 @@ main #recipes-list-container #recipe-container #recipe-info #preparation-info {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    background: #f9ed86;
 }
 
 main #recipes-list-container #recipe-container #recipe-info #preparation-info img {
     width: 40px;
     display: block;
     margin: 0 auto;
+}
+
+main #recipes-list-container #recipe-container #recipe-info #preparation-info #ready-in-info {
+    margin-top: 20px;
+}
+
+/* Recipe ingredients info */
+main #recipes-list-container #recipe-container #recipe-info #recipe-ingredients {
+    padding: 1rem;
+    background: #d7d3f9;
 }
 
 /*

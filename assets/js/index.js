@@ -4,7 +4,9 @@ import SearchRecipe from './models/SearchRecipe';
 import Recipe from './models/Recipe';
 import * as recipeView from './views/recipeView';
 
-const state = {}
+const state = {
+    savedRecipesIsHidden: true
+}
 
 /*
     SEARCH RECIPE
@@ -14,33 +16,67 @@ DOMElements.searchButton.onclick = async () => {
     // For search a recipe
     // 1. Get the value of th search input
     const query = searchView.getInputValue();
+    const searchedRecipesContainer = DOMElements.recipesList;
 
     if(query) {
         // 2. Do the search
         state.search = new SearchRecipe(query);
-        await state.search.getRecipe();
+        await state.search.getRecipes();
 
         // 3. Prepare the UI
         searchView.changeActualSearchTitle(state.search.query, await state.search.results.length);
-        searchView.clearActualRecipe();
-        searchView.renderSearchLoader(DOMElements.recipesList);
+        searchView.clearActualRecipes("search", searchedRecipesContainer);
+        searchView.renderSearchLoader(searchedRecipesContainer);
 
         // 4. Print the recipes in DOM
         searchView.printRecipes(await state.search.results);
         searchView.clearSearchLoader();
-    }
-    
+    }   
 }
 
-/* 
-    RECIPE LIST PAGINATION 
+/*
+    SAVED RECIPES
 */
 
-DOMElements.recipesListPagination.onclick = (e) => {
-    // Check if the target was a button
-    if(e.target.type === 'submit') {
-        searchView.clearActualRecipe();
-        searchView.printRecipes(state.search.results, Number(e.target.dataset.goto));
+// Display the saved recipes
+DOMElements.savedRecipesButton.onclick = () => {
+    const likedRecipes = [
+        {
+            id: 1,
+            title: "Random",
+            servings: 4,
+        },
+        {
+            id: 1,
+            title: "Random",
+            servings: 4,
+        },
+        {
+            id: 1,
+            title: "Random",
+            servings: 4,
+        },
+        {
+            id: 1,
+            title: "Random",
+            servings: 4,
+        },
+        {
+            id: 1,
+            title: "Random",
+            servings: 4,
+        }
+    ]
+
+    if(state.savedRecipesIsHidden) {
+        state.savedRecipesIsHidden = false;
+        DOMElements.savedRecipes.style.left = "0";
+
+        // Now we need to put all saved recipes
+        searchView.printRecipes(likedRecipes, DOMElements.savedRecipes);
+    } else {
+        state.savedRecipesIsHidden = true;
+        DOMElements.savedRecipes.style.left = "100vw";
     }
 }
 
@@ -49,9 +85,11 @@ DOMElements.recipesListPagination.onclick = (e) => {
 */   
 
 DOMElements.recipesList.onclick = async (e) => {
+    const searchedRecipesContainer = DOMElements.recipesList;
+    
     // If the click was in the close-recipe button image
     if(e.target.id === "close-recipe") {
-        searchView.clearActualRecipe("nototal");
+        searchView.clearActualRecipes("search", searchedRecipesContainer);
         searchView.printRecipes(state.search.results);
     }
 
@@ -66,13 +104,12 @@ DOMElements.recipesList.onclick = async (e) => {
             await state.recipe.getRecipe()
 
             // 3rd. After the request, simultanly we need to clear the parent and print the loader for a better UI experience
-            searchView.clearActualRecipe('total');
-            searchView.renderSearchLoader(DOMElements.recipesList);
+            searchView.clearActualRecipes("search", searchedRecipesContainer);
+            searchView.renderSearchLoader(searchedRecipesContainer);
 
             // 4th. Finally we need to clear the loader and print the recipe into DOM
             searchView.clearSearchLoader();
             recipeView.printActualRecipe(state.recipe);
         }
     }
-    
 }
