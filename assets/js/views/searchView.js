@@ -3,26 +3,28 @@ import DOMElements from './DOMElements';
 export const getInputValue = () => DOMElements.searchInput.value;
 
 export const changeActualSearchTitle = (search, recipesLength) => {
-    DOMElements.actualSearchTitle.style.display = 'block';
     DOMElements.actualSearchTitle.innerText = `Recipes for ${search} (${recipesLength})`;
 }
 
-export const clearActualRecipes = (type, parent) => {
-    if(type === "search") {
+export const clearActualRecipes = (parent, type) => {
+    if(type === "searched") {
         DOMElements.searchInput.value = "";
-        DOMElements.recipesListPagination.innerHTML = "";
-    } 
-    parent.innerHTML = "";
-    /*if(total === "total") {
-        DOMElements.actualSearchTitle.style.display = 'none';
-    } else if(total === "nototal") {
-        DOMElements.actualSearchTitle.style.display = 'block';
+    }  else if(type === "saved") {
+
     }
-    DOMElements.searchInput.value = "";
-    DOMElements.recipesList.innerHTML = "";
-    //DOMElements.recipesListPagination.innerHTML = "";*/
+
+    // Restart where is the recipes
+    parent.innerHTML = "";
+
+    // Restart the pagination buttons
+    parent.nextElementSibling.innerHTML = "";
 }
 
+/*
+    SEARCH LOADER 
+*/    
+
+// Search loader wich is a food with a blink effect
 export const renderSearchLoader = (parent) => {
     const loader = `
         <div id="search-loader">
@@ -35,11 +37,21 @@ export const renderSearchLoader = (parent) => {
     parent.insertAdjacentHTML('afterbegin', loader);
 }
 
+// Just for clear the search loader when the page is correctly
 export const clearSearchLoader = () => {
     const loader = document.getElementById('search-loader');
     loader.parentElement.removeChild(loader);
 }
 
+//************************************************************************//
+
+
+/*
+    PRINTING ALL THE RECIPES
+    (IT WORKS FOR SAVED RECIPES AND FOR SARCHED RECIPES)
+*/    
+
+// it prints a recipe to be clicked later
 const newItemRecipe = (recipe, parent) => {
     const recipeItem = `
     <div class="recipe-item" data-recId="${recipe.id}">
@@ -54,15 +66,22 @@ const newItemRecipe = (recipe, parent) => {
 
     parent.insertAdjacentHTML('beforeend', recipeItem);
 }
-/*
-// This is for add the onclick event to the recipes-pagination, the event comes from index.js
-let recipesPaginationClickFromIndex;
 
-export const recipesPaginationClick = e => recipesPaginationClickFromIndex = e;
-*/
+// This is for get th onclick event for print the recipe info wich comes from index.js
+let recipeOnClickEvent;
+
+export const getRecipeOnClickEvent = (event) => {
+    recipeOnClickEvent = event;
+}
+
+// This is for control the print of the recipes, this gets the recipes and later print them
 export const printRecipes = (recipes, parent = DOMElements.recipesList, page = 1, recipesPerPage = 4) => {
+    // This thing obtains where in the array we need to be
     const end = page * recipesPerPage;
     const start = end - recipesPerPage;
+
+    console.log(recipes)
+    console.log(start, end)
 
     recipes.slice(start, end).forEach(recipe => newItemRecipe(recipe, parent));
     
@@ -101,8 +120,16 @@ export const printRecipes = (recipes, parent = DOMElements.recipesList, page = 1
 
     paginationContainer.onclick = e => {
         if(e.target.type === "submit") {
-            clearActualRecipes("search", parent);
-            printRecipes(recipes, parent, Number(e.target.dataset.goto));
+            clearActualRecipes(parent);
+            printRecipes(recipes, parent, Number(e.target.dataset.goto), recipesPerPage);
+        }
+    }
+
+    // Adding the onclick event for every recipe, the event comes from the index.js
+    const recipeItems = document.querySelectorAll(`#${parent.id} .recipe-item`);
+    for(let recipe of recipeItems) {
+        recipe.onclick = () => {
+            recipeOnClickEvent(recipe.dataset.recid)
         }
     }
 }
