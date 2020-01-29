@@ -1,3 +1,7 @@
+/* 
+    GLOBAL CONFIGS 
+*/
+
 * {
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -23,6 +27,23 @@ h2 {
 h3 {
     font-weight: 600;
 }
+
+/*************************************************************/
+
+
+/*
+    PRINCIPAL PAGE CONTAINR
+*/   
+
+#principal-page-container {
+    display: grid;
+    grid-gap: .8rem;
+    overflow: hidden;
+    grid-template-rows: auto 60vh auto;
+}
+
+/*************************************************************/
+
 
 /*
     HEADER
@@ -107,9 +128,13 @@ main #saved-recipes-container {
     right: 0;
     bottom: 0;
     left: 100vw;
-    z-index: 998;
+    z-index: 999;
     transition: 1s all;
+    display: none;
 }
+
+/*************************************************************/
+
 
 /*
     MAIN SECTION
@@ -117,8 +142,8 @@ main #saved-recipes-container {
 
 main {
     background: white;
-    margin: .4rem 0;
     position: relative;
+    overflow: hidden;
 }
 
 /*
@@ -222,10 +247,11 @@ main #actual-recipe-container {
     position: absolute;
     top: 100vh;
     right: 0;
+    bottom: 0;
     left: 0;
     background: white;
     transition: 1s all;
-    z-index: 999;
+    z-index: 998;
     padding: 1rem;
 }
 
@@ -278,7 +304,7 @@ main #actual-recipe-container #recipe-container #recipe-info h3 {
 main #actual-recipe-container #recipe-container #recipe-info #principal-info {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1rem;
     background: #c1f5b0;
 }
@@ -343,5 +369,5 @@ footer {
     color: white;
     padding: 1rem;
     box-shadow: 0px 0px 4px black;
-    margin: 1rem;
+    margin: 0 1rem;
 }

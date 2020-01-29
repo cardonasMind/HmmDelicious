@@ -8,42 +8,49 @@
     <link rel="stylesheet" href="css/styles.css"> <!-- styles in the /dist folder-->
 </head>
 <body>
-    <header>
-        <h1>HmmDelicious</h1>
-        <p>Just a cooking recipes web</p>
-        <div id="header-overlay"></div>
-    </header>
+    <div id="principal-page-container">
+        <div id="page-header">
+            <header>
+                <h1>HmmDelicious</h1>
+                <p>Just a cooking recipes web</p>
+                <div id="header-overlay"></div>
+            </header>
 
-    <div id="search-recipes-container">
-        <div id="search-recipes">
-            <input id="search-input" type="text" placeholder="Search for a recipe">
-            <button id="search-button">Search</button>
-        </div>
-        
-        <img id="saved-recipes-button" src="images/icons/saved-recipes-icon.png" width="40px">
-    </div>
-    <main>
-        <div id="actual-recipe-container"></div>
-        <!-- Saved recipes container here -->
-        <div id="saved-recipes-container">
-            <h1>Your saved recipes</h1>
-            <div id="saved-recipes"></div>
-            <div id="saved-recipes-pagination" class="recipes-pagination"></div>
-        </div>
-
-        <div id="recipes-list-container">  
-            <h2 id="actual-search-title">Write something to search</h2>
-
-            <div id="recipes-list">
-                <div id="placeholder-div">
-                    <img id="placeholder-image" src="images/placeholder-image.png" />
+            <div id="search-recipes-container">
+                <div id="search-recipes">
+                    <input id="search-input" type="text" placeholder="Search for a recipe">
+                    <button id="search-button">Search</button>
                 </div>
+                
+                <img id="saved-recipes-button" src="images/icons/saved-recipes-icon.png" width="40px">
             </div>
-            <div id="recipes-list-pagination" class="recipes-pagination"></div>
         </div>
-    </main>
-    <footer>
-        <p>Made by @cardona_human with love <3</p>
-    </footer>
+
+        <main id="main-section">
+            <div id="actual-recipe-container"></div>
+            
+            <!-- Saved recipes container here -->
+            <div id="saved-recipes-container">
+                <h1>Your saved recipes</h1>
+                <div id="saved-recipes"></div>
+                <div id="saved-recipes-pagination" class="recipes-pagination"></div>
+            </div>
+
+            <div id="recipes-list-container">  
+                <h2 id="actual-search-title">Write something to search</h2>
+
+                <div id="recipes-list">
+                    <div id="placeholder-div">
+                        <img id="placeholder-image" src="images/placeholder-image.png" />
+                    </div>
+                </div>
+                <div id="recipes-list-pagination" class="recipes-pagination"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made by @cardona_human with love <3</p>
+        </footer>
+    </div>
 </body>
 </html>

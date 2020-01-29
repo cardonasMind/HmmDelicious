@@ -34,13 +34,13 @@ export const renderSearchLoader = (parent) => {
         </div>
     `;
 
-    parent.insertAdjacentHTML('afterbegin', loader);
+    parent.innerHTML = loader;
 }
 
 // Just for clear the search loader when the page is correctly
 export const clearSearchLoader = () => {
     const loader = document.getElementById('search-loader');
-    loader.parentElement.removeChild(loader);
+    if(loader) loader.parentElement.removeChild(loader);
 }
 
 //************************************************************************//
@@ -79,9 +79,6 @@ export const printRecipes = (recipes, parent = DOMElements.recipesList, page = 1
     // This thing obtains where in the array we need to be
     const end = page * recipesPerPage;
     const start = end - recipesPerPage;
-
-    console.log(recipes)
-    console.log(start, end)
 
     recipes.slice(start, end).forEach(recipe => newItemRecipe(recipe, parent));
     
@@ -133,3 +130,16 @@ export const printRecipes = (recipes, parent = DOMElements.recipesList, page = 1
         }
     }
 }
+
+
+
+/*
+    ERROR MESSAGES
+*/
+
+export const nothingFoundError = () => `
+    <div id="placeholder-div">
+        <img id="placeholder-image" src="images/placeholder-image.png" />
+        <h1>NOTHING HERE :(</h1>
+    </div>
+`;

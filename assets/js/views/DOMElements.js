@@ -8,6 +8,11 @@ export default  {
     savedRecipesContainer: document.getElementById('saved-recipes-container'),
     savedRecipes: document.getElementById('saved-recipes'),
 
+    /*
+        MAIN SECTION
+    */
+    mainSection: document.getElementById('main-section'),    
+
     /* 
         ACTUAL RECIPE CONTAINER WICH CONTAINS THE ACTUAL RECIPE
     */
