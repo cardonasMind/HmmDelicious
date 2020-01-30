@@ -16,7 +16,6 @@ const createIngredient = ingredient => {
 
 export const printActualRecipe = (recipeInfo) => {
     // This is for print the ingredients
-    console.log(recipeInfo.extendedIngredients)
     recipeInfo.extendedIngredients.forEach(ingredient => createIngredient(ingredient))
 
     const recipe = `
