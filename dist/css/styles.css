@@ -358,7 +358,22 @@ main #actual-recipe-container #recipe-container #recipe-info #preparation-info #
 main #actual-recipe-container #recipe-container #recipe-info #recipe-ingredients {
     padding: 1rem;
     background: #d7d3f9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
 }
+
+main #actual-recipe-container #recipe-container #recipe-info #recipe-ingredients .recipe-ingredient{
+    text-align: center;
+    background: beige;
+    box-shadow: inset 0px 0px 8px;
+    padding: 10px 0;
+}
+
+main #actual-recipe-container #recipe-container #recipe-info #recipe-ingredients .recipe-ingredient img {
+    height: 50px;
+}
+
 
 /*
     FOOTER

@@ -5,7 +5,8 @@ let ingredients = "";
 const createIngredient = ingredient => {
     const ingredientMakeup = `
         <div class="recipe-ingredient">
-        <image src="https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}" />
+            <h4>${ingredient.amount} ${ingredient.unit}</h4>
+            <image src="https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}" />
             <h4>${ingredient.name}</h4>
         </div>
     `;
@@ -15,7 +16,7 @@ const createIngredient = ingredient => {
 
 export const printActualRecipe = (recipeInfo) => {
     // This is for print the ingredients
-    console.log(recipeInfo)
+    console.log(recipeInfo.extendedIngredients)
     recipeInfo.extendedIngredients.forEach(ingredient => createIngredient(ingredient))
 
     const recipe = `
@@ -64,7 +65,7 @@ export const printActualRecipe = (recipeInfo) => {
                     </div>
                 </div>
 
-                <h3>Ingredients</h3>
+                <h3>Ingredients (${recipeInfo.extendedIngredients.length})</h3>
                 <div id="recipe-ingredients">
                     ${ingredients}
                 </div>

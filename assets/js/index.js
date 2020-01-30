@@ -16,15 +16,28 @@ let state = {
 
 const actualRecipeContainer = DOMElements.actualRecipeContainer;
 
+const hideActualRecipeContainer = () => {
+    // Change the overflow of the main section
+    DOMElements.mainSection.style.overflow = "hidden";
+
+    // Change th style of the recipe to hidde it
+    actualRecipeContainer.style.top = "100vh";
+    state.actualRecipeIsHidden = true;
+}
+
+const showActualRecipeContainer = () => {
+    // Change the overflow of the main section
+    DOMElements.mainSection.style.overflow = "auto";
+
+    // Change the style of the recipe for make it visible
+    actualRecipeContainer.style.top = "0";
+    state.actualRecipeIsHidden = false;
+}
+
 // This works when we make click on a recipe
 const printNewRecipe = async (recipeId) => {
     if(recipeId) {
-        // Change the overflow of the main section
-        DOMElements.mainSection.style.overflow = "auto";
-
-        // Change the style of the recipe for make it visible
-        actualRecipeContainer.style.top = "0";
-        state.actualRecipeIsHidden = false;
+        showActualRecipeContainer();
 
         // Start a loader while the data comes from the API
         searchView.renderSearchLoader(actualRecipeContainer);
@@ -49,12 +62,7 @@ searchView.getRecipeOnClickEvent(printNewRecipe)
 // This code will get onclick event in some buttons inside the recipe container
 actualRecipeContainer.onclick = e => {
     if(e.target.id === "close-recipe") {
-        // Change the overflow of the main section
-        DOMElements.mainSection.style.overflow = "hidden";
-
-        // Change th style of the recipe to hidde it
-        actualRecipeContainer.style.top = "100vh";
-        state.actualRecipeIsHidden = true;
+        hideActualRecipeContainer()
     } else if(e.target.id === "save-recipe") {
 
     }
@@ -89,6 +97,16 @@ DOMElements.searchButton.onclick = async () => {
         } else {
             searchView.printRecipes(await state.search.results);
         }
+
+        // Hide the saved recipes container
+        if(!state.savedRecipesIsHidden) {
+            hideSavedRecipesContainer();
+        }
+
+        if(!state.actualRecipeIsHidden) {
+            hideActualRecipeContainer()
+        }
+
         searchView.clearSearchLoader();
     }   
 }
